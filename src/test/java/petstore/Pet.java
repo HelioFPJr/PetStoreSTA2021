@@ -51,4 +51,22 @@ public class Pet {
                 .body("tags.name",contains("STA"))//Checagem dentro de container
         ;
     }
+    @Test
+    public void consultarPet(){
+        String petId = "1987021822";
+        given()
+                .contentType("application/json")
+                .log().all()
+        .when()
+                .get(uri + "/" + petId)
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("name", is("Amy"))
+                .body("category.name", is("dog"))
+                .body("tags.name", contains("STA"))
+                .body("status", is ("available"))
+
+        ;
+    }
 }
