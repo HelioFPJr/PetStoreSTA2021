@@ -16,25 +16,25 @@ import static org.hamcrest.Matchers.contains;
 //3-Classe
 public class Pet {
     //3.1-Atributos
-    String uri = "https://petstore.swagger.io/v2/pet"; //endereÃ§o da entidade Pet
+    String uri = "https://petstore.swagger.io/v2/pet"; //endereço da entidade Pet
 
 
 
 
 
 
-    //3.2-MÃ©todos e FunÃ§Ãµes
+    //3.2-Métodos e Funções
     public String lerJson(String caminhoJson) throws IOException {
        return new String(Files.readAllBytes(Paths.get(caminhoJson)));
     }
 
     //Incluir - Create - Post
-    @Test //Identifica o mÃ©todo ou funÃ§Ã£o como um teste para o TestNG
+    @Test(priority = 1) //Identifica o método ou função como um teste para o TestNG
     public void incluirPet() throws IOException {
         String jsonBody = lerJson("db/pet1.json");
 
         //Sintaxe Gherkin
-        //Dado - Quando - EntÃ£o
+        //Dado - Quando - Então
         //Given - When - Then
         given()
                 .contentType("application/json") //comum em API REST - antigas era"text/xml"
@@ -51,9 +51,10 @@ public class Pet {
                 .body("tags.name",contains("STA"))//Checagem dentro de container
         ;
     }
-    @Test
+    @Test(priority = 2)
     public void consultarPet(){
         String petId = "1987021822";
+        String token =
         given()
                 .contentType("application/json")
                 .log().all()
@@ -66,7 +67,10 @@ public class Pet {
                 .body("category.name", is("dog"))
                 .body("tags.name", contains("STA"))
                 .body("status", is ("available"))
+        .extract()
+                .path("category.name")
 
         ;
+        System.out.println("0 token é "+ token);
     }
 }
