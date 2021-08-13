@@ -1,0 +1,18 @@
+{
+  "id": 1987021822,
+  "category": {
+    "id": 1,
+    "name": "dog"
+  },
+  "name": "Amy",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 20210812,
+      "name": "STA"
+    }
+  ],
+  "status": "sold"
+}

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="petstore.Pet" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-08-13T00:21:25" hostname="DESKTOP-H4J10DE" time="4.946">
+<testsuite name="petstore.Pet" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-08-13T00:36:53" hostname="DESKTOP-H4J10DE" time="5.885">
   <properties/>
-  <testcase name="incluirPet" classname="petstore.Pet" time="3.998"/>
-  <testcase name="consultarPet" classname="petstore.Pet" time="0.943"/>
+  <testcase name="incluirPet" classname="petstore.Pet" time="4.038"/>
+  <testcase name="consultarPet" classname="petstore.Pet" time="0.972"/>
+  <testcase name="alterarPet" classname="petstore.Pet" time="0.869"/>
   <system-out><![CDATA[Request method:	POST
 Request URI:	https://petstore.swagger.io/v2/pet
 Proxy:			<none>
@@ -34,7 +35,7 @@ Body:
     "status": "available"
 }
 HTTP/1.1 200 OK
-Date: Fri, 13 Aug 2021 00:21:29 GMT
+Date: Fri, 13 Aug 2021 00:36:57 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
@@ -74,7 +75,66 @@ Cookies:		<none>
 Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
-Date: Fri, 13 Aug 2021 00:21:30 GMT
+Date: Fri, 13 Aug 2021 00:36:58 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, DELETE, PUT
+Access-Control-Allow-Headers: Content-Type, api_key, Authorization
+Server: Jetty(9.2.9.v20150224)
+
+{
+    "id": 1987021822,
+    "category": {
+        "id": 1,
+        "name": "dog"
+    },
+    "name": "Amy",
+    "photoUrls": [
+        "string"
+    ],
+    "tags": [
+        {
+            "id": 2021,
+            "name": "STA"
+        }
+    ],
+    "status": "available"
+}
+0 token é dog
+Request method:	PUT
+Request URI:	https://petstore.swagger.io/v2/pet
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "id": 1987021822,
+    "category": {
+        "id": 1,
+        "name": "dog"
+    },
+    "name": "Amy",
+    "photoUrls": [
+        "string"
+    ],
+    "tags": [
+        {
+            "id": 20210812,
+            "name": "STA"
+        }
+    ],
+    "status": "sold"
+}
+HTTP/1.1 200 OK
+Date: Fri, 13 Aug 2021 00:36:59 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
@@ -99,9 +159,8 @@ Server: Jetty(9.2.9.v20150224)
             "name": "STA"
         }
     ],
-    "status": "available"
+    "status": "sold"
 }
-0 token édog
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
