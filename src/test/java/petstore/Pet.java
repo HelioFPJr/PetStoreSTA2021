@@ -11,8 +11,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.equalTo;
 
 //3-Classe
 public class Pet {
@@ -49,7 +51,7 @@ public class Pet {
                 .body("name", is("Amy"))
                 .body("status", is("available"))
                 .body("category.name", is("dog"))//checagem dentro de categoria
-                .body("tags.name",contains("STA"))//Checagem dentro de container
+                .body("tags.name",contains("Curso REST-assured"))//Checagem dentro de container
         ;
     }
     @Test(priority = 2)
@@ -66,7 +68,7 @@ public class Pet {
                 .statusCode(200)
                 .body("name", is("Amy"))
                 .body("category.name", is("dog"))
-                .body("tags.name", contains("STA"))
+                .body("tags.name", contains("Curso REST-assured"))
                 .body("status", is ("available"))
         .extract()
                 .path("category.name")
@@ -104,6 +106,20 @@ public class Pet {
                 .body("code", is (200))
                 .body("type", is("unknown"))
                 .body("message", is(petId))
+        ;
+    }
+    @Test(priority = 5)
+    public void consultarPetporStatus(){
+        String status = "available";
+        given()
+                .contentType("application/json")
+                .log().all()
+        .when()
+                .get(uri = "https://petstore.swagger.io/v2/pet/findByStatus?status="+ status)
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("name[]", everyItem(equalTo("Amy")))
         ;
     }
 
