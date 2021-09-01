@@ -113,14 +113,15 @@ public class Pet {
         String status = "available";
         given()
                 .contentType("application/json")
-                .log().all()
+                //.log().all()
         .when()
                 .get(uri = "https://petstore.swagger.io/v2/pet/findByStatus?status="+ status)
+
         .then()
                 .log().all()
                 .statusCode(200)
-                .body("name[]", everyItem(equalTo("Amy")))
-        ;
+                //.body("name",contains("Amy"))
+                .body("name[]", everyItem(equalTo("Amy")));
     }
 
 }
